@@ -10,7 +10,7 @@ export const fetchAllProducts = gql`{
 }`
 
 export const addProduct = gql`
-mutation addProduct($name: String! $price: Float $description: String!) {
+mutation ($name: String! $price: Float $description: String!) {
     createProduct(
         name: $name
         price: $price
@@ -22,4 +22,12 @@ mutation addProduct($name: String! $price: Float $description: String!) {
         price
     }
 }
+`
+
+export const removeProduct = gql`
+  mutation ($id: ID!){
+      deleteProduct(id: $id){
+          id
+      }
+  }
 `
