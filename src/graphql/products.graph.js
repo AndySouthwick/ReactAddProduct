@@ -31,3 +31,18 @@ export const removeProduct = gql`
       }
   }
 `
+
+export const getProduct = gql`
+  query getProduct($id: ID!){
+      Product(id: $id){
+          id
+          name
+          description
+          price
+      }
+  }
+`
+
+export const updateProduct = gql`
+  
+`

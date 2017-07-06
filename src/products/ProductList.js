@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { Table, Container, Row, Col, Button } from 'reactstrap'
 import { fetchAllProducts, removeProduct } from '../graphql/products.graph'
+import { Link } from 'react-router-dom'
 
 class ProductList extends Component {
   handleRemoveProduct = (product) => {
@@ -23,14 +24,15 @@ class ProductList extends Component {
     console.log(allProducts)
 
     const productList = allProducts.map((productList, idx) => {
-        return (<tr key={idx}>
-                  <td>{productList.name}</td>
-                  <td>{productList.description}</td>
-                  <td>{productList.price}</td>
-                  <td className="text-center">
-                    <Button color="danger" size="sm" onClick={() => this.handleRemoveProduct(productList)}>X</Button>
-                  </td>
-                </tr>)})
+      return (<tr key={idx}>
+        <td><Link to={`/Product/${productList.id}`}>{productList.name}</Link></td>
+        <td>{productList.description}</td>
+        <td>{productList.price}</td>
+        <td className="text-center">
+          <Button color="danger" size="sm" onClick={() => this.handleRemoveProduct(productList)}>X</Button>
+        </td>
+      </tr>)
+    })
 
     return (
       <Container>
@@ -38,15 +40,15 @@ class ProductList extends Component {
           <Col>
             <Table bordered striped>
               <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Description</th>
-                  <th>Price</th>
-                  <th className="text-center">Remove</th>
-                </tr>
+              <tr>
+                <th>Product</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th className="text-center">Remove</th>
+              </tr>
               </thead>
               <tbody>
-                {productList}
+              {productList}
               </tbody>
             </Table>
           </Col>
@@ -56,8 +58,8 @@ class ProductList extends Component {
   }
 }
 
-const productQuery =  graphql(fetchAllProducts, {
-  options: {fetchPolicy: 'network-only' }
+const productQuery = graphql(fetchAllProducts, {
+  options: {fetchPolicy: 'network-only'}
 })(ProductList)
 
 const productMutation = graphql(removeProduct)(productQuery)
