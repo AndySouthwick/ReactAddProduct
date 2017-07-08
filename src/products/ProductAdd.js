@@ -9,7 +9,7 @@ class ProductAdd extends Component {
     super()
     this.state = {
       name: '',
-      price: 0.00,
+      price: 0,
       description: ''
     }
   }

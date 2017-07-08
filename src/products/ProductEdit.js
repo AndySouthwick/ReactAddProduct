@@ -18,11 +18,21 @@ class ProductEdit extends Component {
   updateProduct = (evt) => {
 
       evt.preventDefault()
+     // if (this.state.hasOwnProperty('price')){
+     //    this.setState({
+     //        price: parseInt(this.state.price, 10)
+     //    })
+     //     console.log(this.state)
+     // }
+
     this.props.mutate({
       variables: {
-        ...this.props.data.Product,
-        ...this.state,
-          price: parseFloat(this.state.price)
+          ...this.props.data.Product,
+
+          ...this.state
+
+
+
       }
     }).then(() => this.setState({ redirect: true })).catch((err) => {
       console.error(err)
@@ -33,7 +43,6 @@ class ProductEdit extends Component {
   render () {
 
       const { redirect } = this.state;
-
       if (redirect) {
           return <Redirect to='/addProduct'/>;
       }
@@ -73,10 +82,10 @@ class ProductEdit extends Component {
               <InputGroup size="sm">
                 <InputGroupAddon>Price</InputGroupAddon>
                 <Input className="form-control" id="price" type="text" defaultValue={product.price}
-                       onChange={(evt) => this.setState({price: evt.target.value})}/>
+                       onChange={(evt) => this.setState({price: parseFloat(evt.target.value)})}/>
               </InputGroup><br />
               <InputGroup>
-                <Button size="sm" color="primary" type="submit">Add Product</Button>
+                <Button size="sm" color="primary" type="submit">Update Product</Button>
               </InputGroup>
             </form>
           </Col>
