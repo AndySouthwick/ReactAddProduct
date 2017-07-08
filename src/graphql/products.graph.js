@@ -44,5 +44,16 @@ export const getProduct = gql`
 `
 
 export const updateProduct = gql`
-  
-`
+  mutation ($id: ID! $name: String $price: Float $description: String){
+      updateProduct(
+          id: $id
+          name: $name
+          price: $price
+          description: $description
+      ){
+          id
+          name
+          description
+          price
+      }
+  }`

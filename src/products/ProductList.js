@@ -25,7 +25,7 @@ class ProductList extends Component {
 
     const productList = allProducts.map((productList, idx) => {
       return (<tr key={idx}>
-        <td><Link to={`/Product/${productList.id}`}>{productList.name}</Link></td>
+        <td><Link to={`/ProductEdit/${productList.id}`}>{productList.name}</Link></td>
         <td>{productList.description}</td>
         <td>{productList.price}</td>
         <td className="text-center">

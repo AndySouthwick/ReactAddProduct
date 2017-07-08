@@ -37,15 +37,15 @@ class ProductAdd extends Component {
 
               <InputGroup size="sm">
                 <InputGroupAddon>Name</InputGroupAddon>
-                <input className="form-control" id="name" type="text" onChange={(evt) => this.setState({name: evt.target.value}) }/>
+                <Input className="form-control" id="name" type="text" onChange={(evt) => this.setState({name: evt.target.value}) }/>
               </InputGroup><br />
               <InputGroup size="sm">
                 <InputGroupAddon>Description</InputGroupAddon>
-                <input className="form-control" id="description" type="text" onChange={(evt) => this.setState({description: evt.target.value})}/>
+                <Input className="form-control" id="description" type="text" onChange={(evt) => this.setState({description: evt.target.value})}/>
               </InputGroup><br />
               <InputGroup size="sm">
                 <InputGroupAddon>Price</InputGroupAddon>
-                <input className="form-control" id="price" type="text" onChange={(evt) => this.setState({price: evt.target.value})}/>
+                <Input className="form-control" id="price" type="text" onChange={(evt) => this.setState({price: evt.target.value})}/>
               </InputGroup><br />
               <InputGroup>
                 <Button size="sm" color="primary" type="submit" block>Add Product</Button>
