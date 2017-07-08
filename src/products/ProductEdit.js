@@ -4,27 +4,40 @@ import  { graphql } from 'react-apollo'
 import { Container, Row, Col, Button, InputGroup, InputGroupAddon, Input } from 'reactstrap'
 
 import { getProduct, updateProduct } from '../graphql/products.graph'
+import { Redirect } from 'react-router'
+
 
 class ProductEdit extends Component {
   constructor (props) {
     super(props)
+      this.state = {
+      redirect: false
+      }
   }
 
   updateProduct = (evt) => {
-    evt.preventDefault()
+
+      evt.preventDefault()
     this.props.mutate({
       variables: {
         ...this.props.data.Product,
-        ...this.state
+        ...this.state,
+          price: parseFloat(this.state.price)
       }
-    }).then(() => {
-      alert('Prodcut Edited')
-    }).catch((err) => {
+    }).then(() => this.setState({ redirect: true })).catch((err) => {
       console.error(err)
     })
+
   }
 
   render () {
+
+      const { redirect } = this.state;
+
+      if (redirect) {
+          return <Redirect to='/addProduct'/>;
+      }
+
     if (this.props.data.loading) {
       return <h1>Loading</h1>
     }
@@ -47,6 +60,7 @@ class ProductEdit extends Component {
               <h3>Update Product</h3>
 
               <InputGroup size="sm">
+
                 <InputGroupAddon>Name</InputGroupAddon>
                 <Input className="form-control" id="name" type="text" defaultValue={product.name}
                        onChange={(evt) => this.setState({name: evt.target.value}) }/>
@@ -62,7 +76,7 @@ class ProductEdit extends Component {
                        onChange={(evt) => this.setState({price: evt.target.value})}/>
               </InputGroup><br />
               <InputGroup>
-                <Button size="sm" color="primary" type="submit" block>Add Product</Button>
+                <Button size="sm" color="primary" type="submit">Add Product</Button>
               </InputGroup>
             </form>
           </Col>
