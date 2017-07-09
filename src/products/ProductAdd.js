@@ -33,7 +33,7 @@ class ProductAdd extends Component {
         <Row>
           <Col xs="4">
             <form onSubmit={this.addProduct}>
-              <h3>Add Product to Cart</h3>
+              <h3>Add Product to database</h3>
 
               <InputGroup size="sm">
                 <InputGroupAddon>Name</InputGroupAddon>
@@ -53,7 +53,7 @@ class ProductAdd extends Component {
             </form>
         </Col>
         <Col xs="8">
-          <h3>These are the products in your cart
+          <h3>These are the products in your database
             <hr/>
           </h3>
           <ProductList/>
